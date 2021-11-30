@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style media="screen">
+
+    </style>
+</head>
+<body>
+    <h2 id="title">Object in Local Storage</h2>
+</body>
+
+<script text="text/javascript">
+    let myObj = {
+        name: "rishabh",
+        age: 21
+    };
+    console.log(myObj);
+
+    // as localstorage accept everything in the form of string,
+    // thus it will store "[object Object]" as the value of myObj key.
+
+    // console.log(localStorage); it will output ==> {myObj: '[object Object]', length: 1}
+    //localStorage.getItem("myObj") it will output ==> "[object Object]"
+    // localStorage.getItem("myObj").name it will output ==> undefined
+
+localStorage.setItem("myObj",myObj);
+console.log(localStorage);
+    // thus we have to first convert myObj into string.
+    
+    let myObj_Serialized = JSON.stringify(myObj);
+    console.log(myObj_Serialized);
+
+    localStorage.setItem("myObj",myObj_Serialized);
+    console.log(localStorage);
+
+    let myObj_Deserialized = JSON.parse(localStorage.getItem("myObj"));
+    console.log(myObj_Deserialized);
+
+
+
+
+    let hisObj = {
+        name:"umang",
+        age: 23
+    };
+
+    localStorage.setItem("hisObj",JSON.stringify(hisObj));
+    console.log(localStorage);
+    console.log(JSON.parse(localStorage.getItem("hisObj")));
+
+</script>
+</html>

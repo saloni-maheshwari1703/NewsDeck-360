@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none; 
+    background-color: rgb(226, 216, 235);
+  }
+  
+  .search{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+  }
+  
+  .container{
+    position: absolute;
+    top: 40%;
+   
+  }

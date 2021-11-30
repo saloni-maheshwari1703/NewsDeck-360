@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"/>
+
+  <link rel="stylesheet" href="api.css">
+
+  <title>News</title>
+</head>
+<body>
+  <form class="search" action="">
+    <label for="">News</label>
+    <input class="input" type="text"/><br>
+    <input type="submit"/>
+  </form>
+
+  <div class="container">
+    <ul class="news-list"></ul>
+  </div>
+
+  <script>
+    const searchForm = document.querySelector('.search');
+    const input = document.querySelector('.input'); 
+    const newsList = document.querySelector('.news-list');
+
+    searchForm.addEventListener('submit', retrieve)
+
+    function retrieve(e){
+
+      newsList.innerHTML =''
+      e.preventDefault()
+
+      const apiKey = 'c23d9d28a462439aa24f81912a04438b'
+      
+      let topic = input.value;
+
+      let url=`https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
+
+      fetch(url).then((res) => {
+        return res.json()
+      }).then((data) => {
+        console.log(data)
+
+        data.articles.forEach(article =>{
+          let li = document.createElement('li');
+          let a = document.createElement('a');
+          a.setAttribute('href',article.url);
+          a.setAttribute('target', '_blank')
+          a.textContent=article.title;
+          li.appendChild(a);
+          newsList.appendChild(li);
+
+        })
+      })
+    }
+
+  </script>
+</body>
+
+
+</html>
